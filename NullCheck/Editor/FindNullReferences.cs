@@ -23,6 +23,7 @@ namespace Aceade.Util.NullHunter
 
 		void OnGUI()
 		{
+			EditorGUILayout.Space();
 			EditorGUILayout.BeginHorizontal();
 			objectToAdd = (MonoBehaviour)EditorGUILayout.ObjectField(objectToAdd, typeof(MonoBehaviour));
 			if (GUILayout.Button("Add Type"))
@@ -33,6 +34,7 @@ namespace Aceade.Util.NullHunter
 			EditorGUILayout.Space();
 
 			// show the types here
+			GUILayout.Box("Examining:");
 			for (int i = 0; i < types.Count; i++)
 			{
 				
