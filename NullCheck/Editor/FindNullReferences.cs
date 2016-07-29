@@ -8,7 +8,7 @@ namespace Aceade.Util.NullHunter
 {
 	public class FindNullReferences : EditorWindow
 	{
-
+		
 		List<MonoBehaviour> types = new List<MonoBehaviour>();
 		List<NullRefHolder> objectsWithNullRefs = new List<NullRefHolder>();
 
@@ -116,7 +116,7 @@ namespace Aceade.Util.NullHunter
 			}
 			Debug.Log(report);
 
-			// TODO: write to text file.
+			InputOutput.WriteToFile(report, "Assets/Aceade/NullCheck/NullReport.txt");
 		}
 	}
 
