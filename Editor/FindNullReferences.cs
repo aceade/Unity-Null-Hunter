@@ -108,15 +108,19 @@ namespace Aceade.Util.NullHunter
 		{
 			Debug.Log("Generating report");
 			var count = objectsWithNullRefs.Count;
-			string report = string.Format("{0} null {1} found at {2}\n\n", count, count == 1 ? "object" : "objects",
-				DateTime.Now);
-			for (int j = 0; j < objectsWithNullRefs.Count; j++)
-			{
-				report += objectsWithNullRefs[j];
-			}
-			Debug.Log(report);
 
-			InputOutput.WriteToFile(report, "Assets/Aceade/NullCheck/NullReport.txt");
+
+			if (count > 0)
+			{
+				string report = string.Format("{0} null {1} found at {2}\n\n", count, count == 1 ? "object" : "objects",
+					DateTime.Now);
+				for (int j = 0; j < objectsWithNullRefs.Count; j++)
+				{
+					report += objectsWithNullRefs[j];
+				}
+				InputOutput.WriteToFile(report, "Assets/Aceade/NullCheck/NullReport.txt");
+			}
+
 		}
 	}
 

@@ -1,6 +1,0 @@
-# Ignore Unity meta files
-**/*.meta
-
-
-# Ignore the report
-**/NullReport.txt
