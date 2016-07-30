@@ -12,6 +12,9 @@ Unity Null Hunter is an Editor extension I wrote after being spammed with NullRe
 4. When the window opens, add the TestScript MonoBehaviour in the field at the top.
 5. Click the "Find Null References" button.
 
+### Video demo
+<a href="https://youtu.be/8FrS6jHotsg">See here</a>
+
 ## Licence
 MIT Licence (see the attached Licence file)
 
