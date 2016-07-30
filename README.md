@@ -15,6 +15,3 @@ Unity Null Hunter is an Editor extension I wrote after being spammed with NullRe
 ## Licence
 MIT Licence (see the attached Licence file)
 
-## Known Issues
-
-1. It currently writes the results to the console, rather than a text file. This is a TODO.
