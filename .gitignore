@@ -1,5 +1,6 @@
 # Ignore Meta files
+*.meta
 **/*.meta
 
 #Report file
-**/NullReport.txt
+NullReport.txt
