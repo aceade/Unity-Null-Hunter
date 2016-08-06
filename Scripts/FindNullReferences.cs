@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using System.Reflection;
 
 namespace Aceade.Util.NullHunter 
@@ -13,6 +14,8 @@ namespace Aceade.Util.NullHunter
 		List<NullRefHolder> objectsWithNullRefs = new List<NullRefHolder>();
 
 		MonoBehaviour objectToAdd;
+
+		bool displayList;
 
 		[MenuItem("Tools/Aceade/FindNullRefs")]
 		static void ShowWindow()
@@ -34,19 +37,25 @@ namespace Aceade.Util.NullHunter
 			EditorGUILayout.Space();
 
 			// show the types here
-			GUILayout.Box("Examining:");
-			for (int i = 0; i < types.Count; i++)
+			GUILayout.Box(string.Format("Examining {0} objects:", types.Count));
+			displayList = GUILayout.Toggle(displayList, "Display objects");
+
+			if (displayList)
 			{
-				
-				EditorGUILayout.BeginHorizontal();
-				types[i] = (MonoBehaviour)EditorGUILayout.ObjectField(types[i], typeof(MonoBehaviour));
-				if (GUILayout.Button("X"))
+				for (int i = 0; i < types.Count; i++)
 				{
-					types.RemoveAt(i);
+					
+					EditorGUILayout.BeginHorizontal();
+					types[i] = (MonoBehaviour)EditorGUILayout.ObjectField(types[i], typeof(MonoBehaviour));
+					if (GUILayout.Button("X"))
+					{
+						types.RemoveAt(i);
+					}
+					EditorGUILayout.EndHorizontal();
 				}
-				EditorGUILayout.EndHorizontal();
+				EditorGUILayout.Space();
 			}
-			EditorGUILayout.Space();
+
 
 			if (GUILayout.Button("Find Null References"))
 			{
@@ -57,6 +66,12 @@ namespace Aceade.Util.NullHunter
 		void SearchForNulls()
 		{
 			objectsWithNullRefs.Clear();
+			if (types.Count == 0)
+			{
+				Debug.Log("No types defined, assuming all types");
+				types = GameObject.FindObjectsOfType<MonoBehaviour>().ToList();
+			}
+
 			for (int j = 0; j < types.Count; j++)
 			{
 				FindNullRefInType(types[j]);
